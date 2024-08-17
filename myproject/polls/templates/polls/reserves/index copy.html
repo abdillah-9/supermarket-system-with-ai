@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Ocado</title>
+
+    <style>
+        *{
+            text-decoration: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-sizing: border-box;
+        }
+        body,html{
+            margin: 0px;
+            padding: 0px;
+        }
+        nav section{
+            display: flex;flex-direction: row;
+            font-size: 1.5vw;
+            padding: 1vw 1.5vw 1vw 1.5vw;
+            align-items: center;
+        }
+        nav .first img{
+            width: 6vw;height:4vw;
+            position: relative;
+            right: 0.5vw;
+        }
+        nav .second img{
+            width: 10vw;height:5vw;
+        }
+        nav .second .cart_img{
+            width: 6vw;height:3vw;
+            border: 2px solid purple;
+            padding: 1vw 0px;border-radius: 10px;
+        }
+        nav section img, nav section form, nav a , nav div{
+            padding: 1vw 0vw;
+        }
+        nav section a{
+            color: purple;
+            margin-right: 20vw;
+            font-size: 1.2vw;
+        }
+        nav .third b{
+            border-bottom: 3px solid purple;
+            border-right: 3px solid purple;
+            width: 1vw;height: 1vw;
+            margin-left: 1vw;
+            display: inline-block;
+            transform: rotateZ(45deg);
+        }
+        nav .third a:hover{
+            border-bottom: 3px solid purple;
+        }
+        nav form input{
+            display: inline-block;
+            border: 3px solid purple;
+            height: 3vw;width: 80%;
+            position: relative;top: -1.25vw;
+            border-radius: 10px;
+        }
+        nav form{
+            background-color: purple;
+            border: 3px solid purple;
+            margin-left: 2vw;
+            padding: 0px;
+            height: 3vw;width: 30vw;
+            border-radius: 10px;
+        }
+        nav div{
+            margin-left: 20vw;
+        }
+        nav div a{
+            color: white;
+            background-color: purple;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+            display: inline-block;
+        }
+        .mainSection{
+            background-color: rgb(216, 209, 214);
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <section class="first">
+            <a href="index.html"><img src="img/home_icon.png"/></a>
+        </section>
+        <section class="second">
+            <img src="img/brandLogo2.png"/>
+            <form>
+                <input placeholder=" Search here..." type="search" name="search"/>
+            </form>
+            <div>
+                <a href="signIn.html">Sign In</a>
+            </div>
+            <a href="index.html"><img class="cart_img" src="img/cart_icon.png"/></a>
+        </section>
+        <section class="third">
+            <a href="#home">Home<b></b></a>
+            <a href="#about">About<b></b></a>
+            <a href="#customers">Customers<b></b></a>
+        </section>
+    </nav>
+    <section class="mainSection">
+
+    </section>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new account</title>
+    <style>
+*{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        body,html{
+            padding: 0px;
+            margin: 0px;
+            background-image: linear-gradient(155deg, rgb(144, 1, 114) 25%, rgb(1, 1, 63));
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: auto;
+            min-height: 100vh;
+        }
+        nav{
+            background-color: rgba(53, 50, 50,0.7);
+            padding: 2vw 1vw;height: 13vh;
+        }
+        nav a{
+            background-color: rgba(31, 30, 30,0.5);
+            color: white;border-radius: 10px;
+            padding: 1vw;font-size: 1.3vw;
+            border: 1px solid rgb(31, 30, 30);
+        }
+        form{
+            padding: 3vw 1vw 1vw 1vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        form div{
+            padding: 1vw;
+        }
+        h1{
+            font-size: 3vw;
+            font-weight: normal;
+            margin-top: 0px;
+            color: rgba(240, 232, 232,0.8);
+        }
+        label{
+            color: aliceblue;
+            font-size: 2vw;
+        }
+        .input{
+            background-color: rgba(53, 50, 50,0.6);
+            border: 0px solid rgb(139, 135, 135);
+            border-radius: 10px;
+            width: 30vw;
+            padding: 1.7vw;
+            font-size: 1.7vw;
+            color: rgb(240, 232, 232);
+        }
+        p{
+            color: rgb(120, 3, 3);
+            font-size: 1.7vw;
+            width: fit-cotent;
+            display: block;
+            text-align: center;
+        }
+        #submit{
+            border: 0px solid rgb(0, 0, 0);
+            color: rgb(14, 13, 13);
+            font-size: 1.4vw;
+            padding: 1vw;
+            display: block;
+            border-radius: 10px;
+            background-color: rgb(139, 135, 135);
+            cursor: pointer;
+            width: 30vw;
+        }
+        #submit:hover{
+            background-color: rgba(31, 30, 30,0.85);
+            color: rgb(139, 135, 135);  
+            border: 2px solid rgb(240, 232, 232);         
+        }
+        @media screen and (max-width: 600px){
+            #submit{
+                font-size:2.9vw;
+                padding: 1.7vw;
+            }
+            p{
+                font-size:2.7vw;
+            }
+            label{
+                font-size:2.7vw;
+            }
+            nav a{
+                font-size:2.5vw;
+                padding: 1.7vw;
+            }
+            .input{
+                height: 7vw;width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav><a href="../">Sign In</a></nav>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Create New Account Here</h1>
+<div>
+            <!-- Writing signUp error message-->
+            {% for message in messages %}
+            {% if 'sErr' in message.tags %}
+                <p style="font-size: 2vw;margin: 0px;padding: 0px 0px 1vw 0px;">{{message}}</p>
+            {% endif %}    
+         {% endfor %}
+        <!-- End of messages-->
+    <input placeholder="username" type="text" name="uname" class="input"/>
+            <!-- Writing username error message-->
+            {% for message in messages %}
+            {% if 'uErr' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}    
+         {% endfor %}
+        <!-- End of messages-->
+</div>
+<div>
+    <input placeholder="password" type="text" name="pword" class="input" />
+            <!-- Writing password error message-->
+            {% for message in messages %}
+            {% if 'pErr' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}    
+         {% endfor %}
+        <!-- End of messages-->
+</div>
+<div>
+    <input placeholder="Confirm password" type="text" name="cpword"  class="input"/>
+            <!-- Writing Confirm password error message-->
+            {% for message in messages %}
+            {% if 'cpErr' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}    
+         {% endfor %}
+        <!-- End of messages-->
+</div>
+    <input id="submit" type="submit" value="Create account" name="submit"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+*{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        body,html{
+            padding: 0px;
+            margin: 0px;
+            background-image: linear-gradient(155deg, rgb(144, 1, 114) 5%, rgb(1, 1, 33));
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+        nav{
+            background-color: rgba(53, 50, 50,0.7);
+            padding: 2vw 1vw;height: 13vh;
+        }
+        nav a{
+            background-color: rgba(31, 30, 30,0.5);
+            color: white;border-radius: 10px;
+            padding: 0.7vw;font-size: 1.2vw;
+            border: 1px solid rgb(31, 30, 30);
+            display: inline-block;
+            margin-right: 2vw;
+        }
+        form{
+            padding: 2vw 1vw 0vw 1vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        h1{
+            font-size: 3vw;
+            color: rgb(240, 232, 232);
+        }
+        .input{
+            background-color: rgba(53, 50, 50,0.6);
+            border: 0px solid rgb(139, 135, 135);
+            border-radius: 10px;
+            height: auto;width: 30vw;
+            padding: 1.7vw;
+            font-size: 1.7vw;
+            color: rgb(240, 232, 232);
+            display: inline-block;
+        }
+        p{
+            color: rgb(180, 3, 3);
+            font-size: 1.5vw;
+            width: fit-content;
+        }
+        #submit{
+            border: 0px solid rgb(0, 0, 0);
+            color: rgb(14, 13, 13);
+            font-size: 1.4vw;
+            padding: 1vw;
+            display: block;
+            border-radius: 10px;
+            background-color: rgb(139, 135, 135);
+            cursor: pointer;
+            width:30vw;
+        }
+        #submit:hover{
+            background-color: rgba(31, 30, 30,0.85);
+            color: rgb(139, 135, 135);  
+            border: 2px solid rgb(240, 232, 232);         
+        }
+        #main{
+            display: flex;
+            width: 90vw;
+            height: 70vh;
+            border: 2px solid rgb(63, 62, 2);
+            background-color: rgba(40,40,40,0.8);
+            border-radius: 10px;
+            margin: 4vw auto 0px auto;
+            align-content: space-between;
+            justify-content: space-between;
+            justify-self: center;
+            box-shadow: 2px 3px 25px rgb(63, 62, 2);
+        }
+        #special{
+            position: relative;
+            width: 55%;
+            height: 100%;
+            border-radius: 14vw 1vw 1vw 0vw;
+            animation: slideshow 10s ease-in infinite;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            box-shadow: 2px 3px 25px rgb(63, 62, 2);
+            border: 0px solid rgb(63, 62, 2);
+        }
+        @keyframes slideshow{
+            0%{
+                background-image: url("{% static 'myproject/imgs/5.jpeg' %}");
+            }
+            34%{
+                background-image: url("{% static 'myproject/imgs/5.jpeg' %}");
+            }
+            35%{
+                background-image: url("{% static 'myproject/imgs/3.jpg' %}");
+            }
+            69%{
+                background-image: url("{% static 'myproject/imgs/3.jpg' %}");
+            }
+            70%{
+                background-image: url("{% static 'myproject/imgs/11.jpg' %}");
+            }
+            99%{
+                background-image: url("{% static 'myproject/imgs/11.jpg' %}");
+            }
+            100%{
+                background-image: url("{% static 'myproject/imgs/5.jpg' %}");
+            }
+        }
+    
+        p{
+            color: rgb(230, 6, 6);
+            font-size: 1.7vw;
+        }
+        @media screen and (max-width: 600px){
+            #submit{
+                font-size:2.9vw;
+                padding: 1.7vw;
+            }
+            p{
+                font-size:2.7vw;
+            }
+            label{
+                font-size:2.7vw;
+            }
+            nav a{
+                font-size:2.5vw;
+                padding: 1.7vw;
+            }
+            .input{
+                font-size:2.9vw;
+                padding: 1.7vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav><a href="signUp">Sign Up</a></nav>
+    <!-- Writing error messages-->
+     {% for message in messages %}
+        {% if 'passwordNot' in message.tags %}
+            <p>{{message}}</p>
+        {% endif %}    
+     {% endfor %}
+     <!-- End of messages-->
+<section id="main">      
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+            <!-- Writing error messages-->
+     {% for message in messages %}
+     {% if 'accountNot' in message.tags %}
+         <p>{{message}}</p>
+     {% endif %}    
+  {% endfor %}
+ <!-- End of messages-->
+        <input type="text" name="uname" class="input" placeholder="Username"/>    
+    <p>    
+        <!-- username err message-->
+    {% if messages %}     
+        {% for message in messages %}
+           {% if 'uErr' in message.tags %}
+               <span>{{message}}</span>
+           {% endif %}    
+        {% endfor %}
+    {% endif %}    
+       <!-- End of messages-->
+    </p>
+    </div>
+    <div>
+        <input type="password" name="pword" class="input" placeholder="Password"/>
+    <p>    
+        <!-- password err message-->
+        {% for message in messages %}
+           {% if 'pErr' in message.tags %}
+               <span>{{message}}</span>
+           {% endif %}    
+        {% endfor %}
+       <!-- End of messages-->
+    </p>
+    </div>
+    <input id="submit" type="submit" value="Sign In" name="submit"/>
+</form>
+<!--<img src="{% static 'myproject/imgs/2.jpg' %}" style="width: 100px;height:100px;">-->
+<img id="special"></img>
+</section>
+</body>
+</html>

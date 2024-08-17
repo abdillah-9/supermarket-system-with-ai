@@ -1,0 +1,393 @@
+#socialsignin-live-chat-widget-container {
+  pointer-events: none;
+}
+
+:root {
+  --oc-messenger-background-color: #ffffff;
+  --oc-messenger-primary-color: #4d216d;
+  --oc-messenger-primary-hover-color: #2a123b;
+  --oc-messenger-primary-text-color: #ffffff;
+  --oc-messenger-user-bubble-border-width: 2px;
+  --oc-messenger-user-bubble-background-color: #e1e6eb;
+  --oc-messenger-user-bubble-border-color: #e1e6eb;
+  --oc-messenger-bot-bubble-border-width: 1px;
+  --oc-messenger-bot-bubble-background-color: #ffffff;
+  --oc-messenger-bot-bubble-border-color: #e1e6eb;
+}
+
+.oc-messenger {
+  font-family: 'Mulish', 'Muli', sans-serif;
+}
+
+.oc-messenger-open-button {
+  margin: 0;
+  position: fixed;
+  bottom: calc(30% + 0px);
+  right: 0;
+  background: #4d216d;
+  background: var(--oc-messenger-primary-color);
+  color: #ffffff;
+  color: var(--oc-messenger-primary-text-color);
+  border: none;
+  border-radius: 3px 3px 0 0;
+  padding: 8px 28px;
+  transform: rotate(-90deg) translateY(28px);
+  cursor: pointer;
+  font-size: 15px;
+  outline-color: #4d216d;
+  outline-color: var(--oc-messenger-primary-color);
+  font-weight: bold;
+  z-index: 39; /* 99999999 is what the orlo live chat button was set to */
+}
+
+.oc-messenger-open-button-hidden {
+  display: none;
+}
+
+.oc-messenger-open-button:hover {
+  background-color: #2a123b;
+  background-color: var(--oc-messenger-primary-hover-color);
+}
+
+/* Some pages need the chatbot button higher in the z-ordering than others */
+
+.oc-messenger-raised-button-200 .oc-messenger-open-button {
+  z-index: 200;
+}
+
+.oc-messenger-window {
+  display: flex;
+  flex-direction: column;
+  max-width: 370px;
+  max-height: 500px;
+  width: calc(100% - 20px);
+  height: calc(100% - 70px);
+  background: white;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  margin: 10px;
+  margin-bottom: 60px; /* Needed because the virtual keyboard on ipads doesn't play well with fixed positioning */
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.12549);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: opacity 0.4s, transform 0.4s;
+  opacity: 0;
+  transform: translateY(150%);
+  z-index: 20000;
+}
+
+@media only screen and (max-width: 500px) {
+  .oc-messenger-window {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    border: 0;
+  }
+}
+
+.oc-messenger-window button,
+.oc-messenger-window input {
+  font-family: 'Mulish', 'Muli', sans-serif;
+}
+
+.oc-messenger-window.oc-messenger-visible {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.oc-messenger-header {
+  background: #4d216d;
+  background: var(--oc-messenger-primary-color);
+  color: #ffffff;
+  color: var(--oc-messenger-primary-text-color);
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 16px 3px rgba(0,0,0,0.18039);
+  z-index: 1;
+}
+
+.oc-messenger-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 8px;
+  background: #ffffff;
+  background: var(--oc-messenger-background-color);
+}
+
+.oc-messenger-footer {
+  flex: 0 0 auto;
+  padding: 0px;
+  background: #ffffff;
+  border-top: solid 1px #e8e6e6;
+  display: flex;
+  flex-direction: row;
+}
+
+.oc-messenger-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.oc-messenger-close-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.oc-messenger-close-button svg > path {
+  stroke: #ffffff;
+  stroke: var(--oc-messenger-primary-text-color);
+}
+
+.oc-messenger-close-button:hover {
+  background: rgba(255,255,255,0.18824);
+}
+
+.oc-messenger-input {
+  padding: 17px;
+  border: none;
+  background: none;
+  flex: 1 1 auto;
+  font-size: 14px;
+}
+
+.oc-messenger-send-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 8px;
+  outline-color: #4d216d;
+  outline-color: var(--oc-messenger-primary-color);
+}
+
+.oc-messenger-send-button > svg > path {
+  fill: #4d216d;
+  fill: var(--oc-messenger-primary-color);
+}
+
+.oc-messenger-send-button:hover > svg > path {
+  fill: #2a123b;
+  fill: var(--oc-messenger-primary-hover-color);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .oc-messenger-send-button {
+    display: none;
+  }
+}
+
+.oc-messenger-send-button:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.oc-messenger-input:focus {
+  outline: none;
+}
+
+.oc-messenger-bot-response {
+  max-width: 280px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s, opacity 0.4s;
+  flex: 0 0 auto;
+}
+
+.oc-messenger-user-response {
+  max-width: 280px;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s, opacity 0.4s;
+  flex: 0 0 auto;
+}
+
+.oc-user-response-transition-bottom-margin {
+  transition: margin-bottom 0.4s;
+}
+
+.oc-messenger-message-fade-down {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.oc-messenger-user-text-message {
+  background-color: #e1e6eb;
+  background-color: var(--oc-messenger-user-bubble-background-color);
+  border-radius: 20px;
+  padding: 6px 10px;
+  margin: 4px;
+  font-size: 14px;
+  word-break: break-word;
+  border-style: solid;
+  border-color: #e1e6eb;
+  border-color: var(--oc-messenger-user-bubble-border-color);
+  border-width: 2px;
+  border-width: var(--oc-messenger-user-bubble-border-width);
+  transition: background-color 0.4s, border-color 0.4s;
+}
+
+.oc-messenger-bot-text-message,
+.oc-messenger-bot-link-message {
+  background-color: #ffffff;
+  background-color: var(--oc-messenger-bot-bubble-background-color);
+  color: #212121;
+  border-radius: 10px;
+  padding: 6px 10px;
+  margin: 4px;
+  word-break: break-word;
+  border-style: solid;
+  border-color: #e1e6eb;
+  border-color: var(--oc-messenger-bot-bubble-border-color);
+  border-width: 1px;
+  border-width: var(--oc-messenger-bot-bubble-border-width);
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+.oc-messenger-bot-link-message {
+  text-decoration: underline;
+}
+
+.oc-messenger-bot-link-message:hover {
+  background: #f1f1f1;
+}
+
+.oc-messenger-quick-replies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+.oc-messenger-quick-replies .oc-messenger-user-text-message {
+  transition: transform 0.2s, opacity 0.2s, width 0.4s, height 0.4s, padding 0.4s, margin 0.4s;
+}
+
+.oc-messenger-quick-replies .oc-messenger-user-text-message:not(.oc-messenger-quick-reply-selected) {
+  background-color: white;
+  border-color: #4d216d;
+  border-color: var(--oc-messenger-primary-color);
+  cursor: pointer;
+}
+
+.oc-messenger-quick-replies .oc-messenger-user-text-message:not(.oc-messenger-quick-reply-selected):hover {
+  background-color: #4d216d 2e;
+  background-color: var(--oc-messenger-primary-color) 2e;
+}
+
+.oc-messenger-quick-reply-hidden {
+  transform: translateY(10px);
+  overflow: hidden;
+  opacity: 0;
+}
+
+.oc-messenger-quick-reply-hidden-remove-x {
+  width: 0px !important;
+}
+
+.oc-messenger-quick-reply-hidden-remove-x {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.oc-messenger-quick-reply-hidden-remove-y {
+  height: 0px !important;
+}
+
+.oc-messenger-quick-reply-hidden-remove-y {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+@-webkit-keyframes oc-messenger-typing {
+  25% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  75% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes oc-messenger-typing {
+  25% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  75% {
+    transform: translateY(0);
+  }
+}
+
+.oc-messenger-typing-dot1,
+.oc-messenger-typing-dot2,
+.oc-messenger-typing-dot3 {
+  width: 6px;
+  height: 6px;
+  background: #4d216d;
+  background: var(--oc-messenger-primary-color);
+  border-radius: 50%;
+  margin: 2px;
+  transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+  -webkit-animation: oc-messenger-typing 1s infinite;
+          animation: oc-messenger-typing 1s infinite;
+}
+
+.oc-messenger-typing-dot1 {
+  -webkit-animation-delay: 0.16s;
+          animation-delay: 0.16s;
+}
+
+.oc-messenger-typing-dot2 {
+  -webkit-animation-delay: 0.33s;
+          animation-delay: 0.33s;
+}
+
+.oc-messenger-typing-dot3 {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+.oc-messenger-loading {
+  display: none;
+  flex-direction: row;
+  padding: 10px 12px;
+}
+
+.oc-messenger-loading.oc-messenger-visible {
+  display: flex;
+}

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,700,800,900|Source+Sans+Pro:300,400');
+
+@font-face {
+    font-family: 'Ocado Sans';
+    src: url('/webshop/static/fonts/ocadosans-light.woff') format('woff'), url('/webshop/static/fonts/ocadosans-light.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Ocado Sans';
+    src: url('/webshop/static/fonts/ocadosans-regular.woff') format('woff'), url('/webshop/static/fonts/ocadosans-regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Ocado Sans';
+    src: url('/webshop/static/fonts/ocadosans-bold.woff') format('woff'), url('/webshop/static/fonts/ocadosans-bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer cart</title>
+    <style>
+*{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        body,html{
+            padding: 0px;
+            margin: 0px;
+            background-image: linear-gradient(90deg, rgb(114, 1, 84) 5%, rgb(30, 30, 63));
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        nav{
+            background-color: rgba(53, 50, 50,0.7);
+            padding: 2vw 1vw;height: 13vh;
+        }
+        nav a{
+            background-color: rgba(31, 30, 30,0.5);
+            color: white;border-radius: 10px;
+            padding: 1vw;font-size: 1.3vw;
+            border: 1px solid rgb(31, 30, 30);
+            margin-right: 1.2vw;
+        }
+        .output{
+            width: 100%;
+            padding: 0px 1vw 0px 0vw;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .output div{
+            color: rgba(239, 235, 235,0.8);
+            font-size: 1.5vw;
+            border-top: 3px solid rgba(139, 135, 135,0.9);
+            border-bottom: 1px solid rgba(139, 135, 135,0.9);
+            padding:1.4vw 1vw;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 2vw;
+            width: 15vw;
+        }
+        .output span{
+            margin: 0px;padding: 0px;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+        }
+        .output img{
+            border-radius: 10px;
+            height: 10vw;width: 100%;
+            margin-bottom: 0.9vw;
+        }
+        #cErr{
+            color: white;
+            background-color: rgb(214, 45, 15);
+            padding: 1.5vw 2vw;
+            border-radius: 10px;
+            position: fixed;
+            right: 1vw;
+            top: 1vh;
+        }
+        input{
+            width: 100%;
+            border-radius:5px;
+            padding:0.8vw;
+            display: flex;
+            margin:0.7vw 0px;
+            font-size: 1.2vw;
+        }
+        #submit{
+            cursor: pointer;
+            background-color: rgba(31, 30, 30,0.5);
+            border: 0px solid rgb(139, 135, 135);
+            color: rgba(239, 235, 235,0.9);
+        }
+        #input{
+            border: 0px solid rgb(139, 135, 135);
+        }
+        @media screen and (max-width: 900px){
+            .mainSection{
+                flex-direction: column;
+            }
+            .input{
+                width: 100%;
+                height: fit-content;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../">Home</a>
+        <a href="../customerHome">Back</a>
+    </nav>
+<section class="mainSection">
+    <section class="output">
+                <!-- Printing the product from db-->    
+            {% if Cart_data %}
+                {% for asset in Cart_data %}
+                    {% if asset.user_nm %}
+                <div>
+                        {% with 'myproject/imgs/'|add:asset.p_image as image_path %} 
+                        <img src="{% static image_path %}">
+                        {% endwith %}
+                        <span>Product name : {{asset.p_name}}</span>
+                        <span>Ordered : {{asset.c_number}}</span>
+                        <span>Price per each : {{asset.p_price}} Tsh</span>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <input type="hidden" name="p_name" value="{{asset.p_name}}"/>
+                        <input type="hidden" name="c_number" value="{{asset.c_number}}"/>                          
+                            <span>
+                        <input type="submit" name="submit" value="Buy" id="submit"/>
+                        <input type="submit" name="remove" value="Remove" id="submit"/>
+                            </span>
+                    </form>
+                </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <!-- End of message-->
+    </section>
+</section>
+    <!--<a id="feedback" href="../feedback">Send feedback</a>-->
+</body>
+</html>

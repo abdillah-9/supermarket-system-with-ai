@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        body,html{
+            padding: 0px;
+            margin: 0px;
+            background-color: rgb(31, 30, 30);
+        }
+        nav{
+            background-color: rgb(53, 50, 50);
+            padding: 2vw;height: 13vh;
+        }
+        nav a{
+            background-color: rgb(31, 30, 30);
+            color: white;border-radius: 10px;
+            padding: 1vw;font-size: 1.2vw;
+            border: 1px solid rgb(31, 30, 30);
+        }
+        .mainSection{
+            display: flex;
+        }
+        .input{
+            background-color: rgb(53, 50, 50);
+            width: 25%;height: 85vh;
+            border: 5px solid rgb(31, 30, 30);
+            border-radius: 10px;
+            padding: 1vw;
+        }
+        .input div{
+            padding-bottom: 3vw;
+        }
+        .input label{
+            color: aliceblue;
+        }
+        .input select{
+            border: 2px solid rgb(31, 30, 30);
+            border-radius: 10px;
+            cursor: pointer;
+            height: 3vw;
+        }
+        #submit{
+            border: 2px solid rgb(31, 30, 30);
+            color: rgb(14, 13, 13);
+            font-size: 1.1vw;
+            padding: 0.7vw;
+            display: block;
+            border-radius: 10px;
+            background-color: rgb(139, 135, 135);
+            cursor: pointer;
+        }
+        .output{
+            border: 5px solid rgb(31, 30, 30);
+            padding: 0px 1vw 0px 0vw;
+        }
+        .output h1{
+            color: rgb(139, 135, 135);
+            margin: 0px;
+            font-size: 2vw;
+            font-weight: normal;
+        }
+        .output div{
+            color: rgb(139, 135, 135);
+            font-size: 1.5vw;
+            margin-top: 1.5vw;
+        }
+        #feedback{
+            border: 1px solid white;
+            border-radius: 50%;
+            background-color: white;
+            color: rgb(20, 19, 19);
+            padding: 2vw;
+            font-size: 1vw;
+            position: fixed;
+            right: 0px;
+            top: 8vw;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../">Home</a>
+    </nav>
+<section class="mainSection">
+    <section class="input">
+        <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div>
+                <label>Age: </label>
+                <select name="age">
+                    <option value="none"></option>
+                    <option value="below_18">Below 18yrs</option>
+                    <option value="18_40">18yrs to 40yrs</option>
+                    <option value="above_40">Above 40yrs</option>
+                </select>
+            </div>
+            <div>
+                <label>Gender: </label>
+                <select name="gender">
+                    <option value="none"></option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div>
+                <label>Free time: </label>
+                <select name="free_time">
+                    <option value="none"></option>
+                    <option value="below_2">Below 2hrs</option>
+                    <option value="2_8">2hrs to 8hrs</option>
+                    <option value="above_8">Above 8hrs</option>
+                </select>
+            </div>
+            <div>
+                <label>Part of the body: </label>
+                <select name="part_of_the_body">
+                    <option value="none"></option>
+                    <option value="whole_body">Whole body</option>
+                    <option value="upper_body">Upper body</option>
+                    <option value="lower_body">Lower body</option>
+                    <option value="legs">Legs</option>
+                    <option value="waist">waist</option>
+                    <option value="chest">chest</option>
+                    <option value="arms">arms</option>
+                    <option value="neck">neck</option>
+                    <option value="back">back</option>
+                </select>
+            </div>
+            <div>
+                <label>Blood pressure: </label>
+                <select name="blood_pressure">
+                    <option value="none"></option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <input id="submit" type="submit" name="submit" value="Submit"/>
+        </form>
+    </section>
+    <section class="output">
+        <h1>Welcome dear user please submit your needs</h1>
+    </section>
+</section>
+    <a id="feedback" href="feedback">Send feedback</a>
+</body>
+</html>

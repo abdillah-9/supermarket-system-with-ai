@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send feedback</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        body,html{
+            padding: 0px;
+            margin: 0px;
+            background-color: rgb(31, 30, 30);
+        }
+        nav{
+            background-color: rgb(53, 50, 50);
+            padding: 2vw 1vw;height: 13vh;
+        }
+        nav a{
+            background-color: rgb(31, 30, 30);
+            color: white;border-radius: 10px;
+            padding: 1vw;font-size: 1.2vw;
+            border: 1px solid rgb(31, 30, 30);
+        }
+        form{
+            padding: 1vw;
+        }
+        label{
+            color: aliceblue;
+            font-size: 2vw;
+            display: block;
+            padding: 2vw 0px;
+        }
+        .input{
+            background-color: rgb(53, 50, 50);
+            border-left: 2px solid rgb(139, 135, 135);
+            border-bottom: 2px solid rgb(139, 135, 135);
+            border-radius: 10px;
+            height: 10vw;width: 50%;
+            position: relative;
+            top: -0.4vw;
+            font-size: 18px;
+        }
+        p{
+            color: rgb(230, 6, 6);
+            font-size: 1.7vw;
+        }
+        pre{
+            color: rgba(6, 230, 6, 0.342);
+            font-size: 1.7vw;
+        }
+        #submit{
+            border: 3px solid rgb(3, 0, 0);
+            color: rgb(14, 13, 13);
+            font-size: 1.4vw;
+            padding: 1vw;
+            display: block;
+            border-radius: 10px;
+            background-color: rgb(139, 135, 135);
+            cursor: pointer;
+        }
+        #submit:hover{
+            background-color: rgb(14, 13, 13);
+            color: rgb(139, 135, 135);  
+            border: 2px solid rgb(240, 232, 232);         
+        }
+        h1{
+            color: rgb(139, 135, 135);
+            margin-bottom: 2vw;
+        }
+        @media screen and (max-width: 600px){
+            #submit{
+                font-size:2.9vw;
+                padding: 1.7vw;
+            }
+            p{
+                font-size:2.7vw;
+            }
+            pre{
+                font-size:2.7vw;
+            }
+            label{
+                font-size:2.7vw;
+            }
+            nav a{
+                font-size:2.5vw;
+                padding: 1.7vw;
+            }
+            .input{
+                height: 10vw;width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav><a href="../patientHome">Dashboard</a></nav>
+        <!-- Writing successful message-->
+        {% for message in messages %}
+        {% if 'sErr' in message.tags %}
+            <pre>{{message}}</pre>
+        {% endif %}    
+     {% endfor %}
+    <!-- End of messages-->
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Please send your feedback</h1>
+<div>
+    <label>Feedback: </label><textarea class="input" name="user_feedback"></textarea>
+            <!-- Writing textarea error message-->
+            {% for message in messages %}
+            {% if 'uErr' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}    
+         {% endfor %}
+        <!-- End of messages-->
+</div>
+    <input id="submit" type="submit" value="Submit" name="submit"/>
+</form>
+</body>
+</html>
