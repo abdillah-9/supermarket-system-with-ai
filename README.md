@@ -17,15 +17,19 @@ FEATURES USED:
 MAIN FEATURES.
 
 •	Add products in cart.
+
 Users are able to add goods of their selection in cart.
 
 •	Purchasing products/goods.
+
 Users can buy goods from the system.
 
 •	Products upload to the system.
+
 Also Administrator can upload products in the system ie name of product, image of the product, number of the product and its price.
 
 •	Suggestion messages from AI model.
+
 Admin is given suggestion messages based on statistics of the sells by the help of AI model.
 
 
