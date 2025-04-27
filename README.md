@@ -1,5 +1,5 @@
 PROJECT TITLE:
-SUPERMARKET SYSTEM WITH AI FOR DECISION MAKING
+SUPERMARKET SYSTEM (WITH AI FOR DECISION MAKING)
 
 DESCRIPTION:
 This system allows customers to shop their needs online and the administrator is given some suggestions that helps to make decisions for business improvement. It involved Supervised algorithm namely as CART algorithm that utilizes labeled data.
@@ -34,11 +34,12 @@ Admin is given suggestion messages based on statistics of the sells by the help 
 
 
 INSTALLATION AND USAGE:
+Makesure you have below packages installed if your running it in localhost ie python with pip,
+pipenv(recommended), scikit-learn for ML, and django
 
-•	First make sure your computer has python installed. Try by running python –v so that to identify version of your node if it’s installed using your cmd.
+VERSIONS: (they can be located in pipFile)
+django = "*"
+numpy = "*"
+scikit-learn = "*"
+python_version = "3.10"
 
-•	Remaining packages are already installed in the folder containing an application. 
-
-•	Open CMD then move to the directory of the folder first_django inside the project folder then run pipenv shell command to activate the environment
-
-•	Then move to directory first_django/first_project using cd command then run python manage.py runserver to start the project
